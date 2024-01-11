@@ -1,0 +1,25 @@
+config:
+  config: |
+   {
+     "server": "proxmox.server.domain",
+     "server_port": "8006",
+     "protocol": "https",
+     "token_uid": "your_account@ldap!account_name",
+     "token_secret": "frwegerg-06dc-420f-809e-feed4b8rgf35",
+     "scrape_timeout": 10
+   }
+
+kubernetesClusterDomain: cluster.local
+proxmoxMetrics:
+  proxmoxMetrics:
+    image:
+      repository: steemax/proxmox-custom-scrape
+      tag: v1.0.3
+    resources:
+      limits:
+        cpu: 200m
+        memory: 100Mi
+      requests:
+        cpu: 100m
+        memory: 20Mi
+  replicas: 1

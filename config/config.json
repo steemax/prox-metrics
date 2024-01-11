@@ -1,0 +1,8 @@
+{
+    "server": "proxmox.server.domain",
+	"server_port": "8006",
+	"protocol": "https",
+	"token_uid": "your_account@ldap!account_name",
+	"token_secret": "frwegerg-06dc-420f-809e-feed4b8rgf35",
+	"scrape_timeout": 10
+}

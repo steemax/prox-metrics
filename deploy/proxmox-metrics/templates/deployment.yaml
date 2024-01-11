@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "proxmox-metrics.fullname" . }}-proxmox-metrics
+  labels:
+  {{- include "proxmox-metrics.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.proxmoxMetrics.replicas }}
+  selector:
+    matchLabels:
+      app: proxmox-metrics
+    {{- include "proxmox-metrics.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        app: proxmox-metrics
+      {{- include "proxmox-metrics.selectorLabels" . | nindent 8 }}
+      annotations:
+        prometheus.io/port: "9090"
+        prometheus.io/scrape: "true"
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_CLUSTER_DOMAIN
+          value: {{ quote .Values.kubernetesClusterDomain }}
+        image: {{ .Values.proxmoxMetrics.proxmoxMetrics.image.repository }}:{{ .Values.proxmoxMetrics.proxmoxMetrics.image.tag
+          | default .Chart.AppVersion }}
+        name: proxmox-metrics
+        ports:
+        - containerPort: 9090
+        resources: {{- toYaml .Values.proxmoxMetrics.proxmoxMetrics.resources | nindent
+          10 }}
+        volumeMounts:
+        - mountPath: /app/config/config.json
+          name: config
+          subPath: config
+      volumes:
+      - configMap:
+          name: {{ include "proxmox-metrics.fullname" . }}-config
+        name: config

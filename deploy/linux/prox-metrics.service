@@ -1,0 +1,11 @@
+[Unit]
+Description=Prox Metrics Service
+After=network.target
+
+[Service]
+User=prox-metrics
+Group=prox-metrics
+ExecStart=/usr/local/prox-metrics/prox-metrics
+
+[Install]
+WantedBy=multi-user.target

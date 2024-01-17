@@ -76,7 +76,7 @@ var (
 
 func PromRegisterMetrics() {
 	// Register Prometheus Metrics
-	prometheus.MustRegister(cpuUsageGaugeVec, cpuCouuntGaugeVec, cpuCouuntAssignGaugeVec, memCouuntGaugeVec, memCouuntAllocGaugeVec, diskSizeAllocGaugeVec, diskSizeGaugeVec)
+	prometheus.MustRegister(cpuUsageGaugeVec, cpuCouuntGaugeVec, cpuCouuntAssignGaugeVec, memCouuntGaugeVec, memCouuntAllocGaugeVec, diskSizeAllocGaugeVec, diskSizeGaugeVec, cpuCountPowerOffVmsGaugeVec)
 }
 
 func ScrapeNodes(nodesList []string, client *nodes.Client) {

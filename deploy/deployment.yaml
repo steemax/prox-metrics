@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: proxmox-metrics
-        image: steemax/proxmox-custom-scrape:v1.0.3
+        image: steemax/proxmox-custom-scrape:v1.0.0
         ports:
         - containerPort: 9090
         volumeMounts:

@@ -5,6 +5,7 @@ After=network.target
 [Service]
 User=prox-metrics
 Group=prox-metrics
+WorkingDirectory=/usr/local/prox-metrics
 ExecStart=/usr/local/prox-metrics/prox-metrics
 
 [Install]

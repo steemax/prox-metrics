@@ -272,7 +272,7 @@ func GetMemAlloc(client *Client, nodeName string) (int64, error) {
 
 func GetDiskSize(client *Client, nodeName string) (int64, error) {
 	// Create URL
-	url := fmt.Sprintf("%s/nodes/%s/rrddata?timeframe=day", client.BaseURL, nodeName)
+	url := fmt.Sprintf("%s/nodes/%s/storage", client.BaseURL, nodeName)
 
 	// Request
 	req, err := http.NewRequest("GET", url, nil)
@@ -293,14 +293,29 @@ func GetDiskSize(client *Client, nodeName string) (int64, error) {
 	// JSON Response decode
 	var result struct {
 		Data []struct {
-			Disk int64 `json:"roottotal"`
+			Storage string `json:"storage"`
+			Disk    int64  `json:"total"`
 		} `json:"data"`
 	}
+
 	err = json.NewDecoder(resp.Body).Decode(&result)
 	if err != nil {
 		return 0, err
 	}
-	disk := result.Data[0].Disk / 1024 / 1024 / 1024
+
+	// Find the total disk size for storage "local"
+	var disk int64
+	for _, storage := range result.Data {
+		if storage.Storage == "local" {
+			disk = storage.Disk / 1024 / 1024 / 1024
+			break
+		}
+	}
+
+	if disk == 0 {
+		return 0, errors.New("No storage data found for 'local' in the response")
+	}
+
 	return disk, nil
 }
 

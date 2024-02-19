@@ -6,11 +6,11 @@ metadata:
 data:
   config: |-
       {
-        "server": "proxmox.server.domain",
-        "server_port": "8006",
-        "protocol": "https",
-        "token_uid": "your_account@ldap!account_name",
-        "token_secret": "frwegerg-06dc-420f-809e-feed4b8rgf35",
-        "scrape_timeout": 10
+          "server": "test-proxmox-k8s-01.el.wb.ru",
+      	"server_port": "8006",
+      	"protocol": "https",
+      	"token_uid": "poluboyarcev.a@infra-ldap!poluboyarcev.a",
+      	"token_secret": "6d669a6a-06dc-420f-809e-feed4b8e1aca",
+      	"scrape_timeout": 10
       }
 

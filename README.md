@@ -1,3 +1,6 @@
+02.2024 RELEASE: 
+     - fix disk size metrics    
+     - add vault secrets integration (see config.json)
     
 metrics example (all metrics available on :9090/metrics):
 
@@ -64,7 +67,7 @@ systemctl daemon-reload
 systemctl start prox-metrics.service
 ```
  
- ### Deploy "Как сервис в Kubernetes"
+ ### Deploy "as Kubernetes Service"
 *HELM + K Apply*
 
 Kubectl
@@ -80,7 +83,7 @@ helm install prox-metrics -f ./value.yaml ./ --namespace=monitoring
 ```
 
 ## Grafana Dashboard
-Пример борды лежит в репе, в JSON формате который можно экспортнуть как темплейт (./deploy/grafana-dashboard.json)
+Examples Grafana Dashboard places  in ./deploy/grafana-dashboard.json, use import/export in your Grafana server
 
 
 

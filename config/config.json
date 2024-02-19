@@ -1,8 +1,13 @@
 {
-    "server": "proxmox.server.domain",
+        "server": "proxmox.server.domain",
 	"server_port": "8006",
 	"protocol": "https",
-	"token_uid": "your_account@ldap!account_name",
-	"token_secret": "frwegerg-06dc-420f-809e-feed4b8rgf35",
-	"scrape_timeout": 10
+	"token_uid": "username@ldap!token-name",
+	"token_secret": "6d669a6a-06dc-420f-809e-feed4b8e1aca",
+	"scrape_timeout": 10,
+	"enable_vault": false,
+	"vault_server": "https://vault.server.domain",
+	"vault_path": "/data/exporter/prox-token",
+	"vault_role_id": "34t4rwfrw-2927-77ff-e2aa-frewgr43rw",
+	"vault_secret_id": "rgwerrtg--d03e-efa4-b0a7fgrergfe9d"
 }

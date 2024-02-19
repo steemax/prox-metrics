@@ -107,7 +107,7 @@ func ScrapeNodes(nodesList []string, client *nodes.Client) {
 			log.Printf("Error get response from API for number CPU assigned to Power-off VMs %s: %v\n", nodeName, err)
 			continue
 		}
-		log.Printf("CPU numbers assigned to VMs in Power-off state, on node %s is: %d\n", nodeName, cpuAllocPwrOff)
+		log.Printf("CPU numbers assigned to VMs in Power-off state, on node %s is: %d\n", nodeName, cpuAlloc)
 
 		memCount, err := nodes.GetMemCount(client, nodeName)
 		if err != nil {
